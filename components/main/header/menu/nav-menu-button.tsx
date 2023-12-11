@@ -3,7 +3,7 @@ import { cn } from "@/lib/utlis";
 import { motion } from "framer-motion";
 import { RefObject, forwardRef } from "react";
 
-const NavMenuButton = forwardRef(function index(
+const NavMenuButton = forwardRef(function Index(
   props: any,
 
   ref: any

@@ -34,7 +34,7 @@ const menu = {
   },
 };
 
-const NavMenu = forwardRef(function index(props: any, ref: any) {
+const NavMenu = forwardRef(function Index(props: any, ref: any) {
   const nav = useNav();
   const cursor = useCursor();
   const maxRotate = 45;
