@@ -56,6 +56,7 @@ const ProjectPage = () => {
         </AnimatePresence>
 
         <canvas
+          //@ts-ignore
           style={color}
           className=" h-[125dvh]"
           id="gradient-canvas"
