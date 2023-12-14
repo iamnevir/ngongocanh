@@ -1,21 +1,13 @@
 import * as THREE from "three";
-import React, {
-  Suspense,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { Canvas, useLoader, useFrame } from "@react-three/fiber";
-import { Environment, Html, Text } from "@react-three/drei";
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { Canvas, useLoader, useFrame, extend } from "@react-three/fiber";
+import { Effects, Environment, Html, Preload } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { easing } from "maath";
-import { cn, randomRange } from "@/lib/utlis";
-import AnimateButton from "@/components/animate-button";
-import { TypingText } from "../header/navigation/typing-text";
-import { useSpring, a } from "@react-spring/three";
-import Magnetic from "@/components/magnetic";
-import { useCursor } from "@/hooks/use-cursor";
+import { randomRange } from "@/lib/utlis";
+import Status from "./status";
+import Explore from "./explore";
+
 function Bird({ speed, factor, url, ...props }: any) {
   const { nodes, materials, animations }: any = useLoader(GLTFLoader, url);
   const group = useRef<any>();
@@ -80,47 +72,32 @@ function Birds() {
 }
 
 export default function BirdCanvas() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      setTimeout(() => {
-        setIsLoading(false);
-        window.scrollTo(0, 0);
-      }, 4500);
-    })();
-  }, []);
   return (
     <>
       <Canvas camera={{ position: [0, 0, 20] }}>
         <color attach="background" args={["#FFE4E6"]} />
-        <ambientLight intensity={8} />
+        <ambientLight intensity={7} />
         <Suspense fallback={null}>
           <Status />
+
           <Birds />
           <Environment preset="city" />
           <Html as="div" fullscreen transform position={[0, -10, -10]}>
-            <Magnetic>
-              <div
-                className={cn(
-                  "flex z-0 items-center justify-center w-[400px] h-[140px] rounded-full",
-                  isLoading ? "hidden" : ""
-                )}
-              >
-                <AnimateButton
-                  text="Fly with me"
-                  className="w-[500px] h-[130px] bg-rose-50"
-                />
-              </div>
-            </Magnetic>
+            <Explore
+              delay={4}
+              translateY={2}
+              text="Fly with me"
+              link="/projects"
+            />
           </Html>
         </Suspense>
         <Rig />
+        <Preload />
       </Canvas>
     </>
   );
 }
-function Rig() {
+export function Rig() {
   useFrame((state, delta) => {
     easing.damp3(
       state.camera.position,
@@ -135,67 +112,4 @@ function Rig() {
     state.camera.lookAt(0, 0, 0);
   });
   return <></>;
-}
-
-function Status(props: any) {
-  const AnimatedText = a(Text);
-  const [springs, api] = useSpring(
-    () => ({
-      scale: 1,
-      position: [0, 0],
-      color: "#ff6d6d",
-    }),
-    []
-  );
-  const handlePointerEnter = () => {
-    api.start({
-      scale: 1.05,
-    });
-  };
-
-  const handlePointerLeave = () => {
-    api.start({
-      scale: 1,
-    });
-  };
-
-  return (
-    <>
-      <AnimatedText
-        fontSize={1}
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}
-        scale={springs.scale}
-        letterSpacing={-0.025}
-        color="black"
-        position={[0, 10, -10]}
-      >
-        {"FULLSTACK DEVELOPER & MOTION STUDIO"}
-      </AnimatedText>
-      <AnimatedText
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}
-        scale={springs.scale}
-        fontSize={8}
-        letterSpacing={-0.025}
-        font="/italic.ttf"
-        characters="creathe"
-        color="black"
-        position={[0, 6, -10]}
-      >
-        {"Creating the"}
-      </AnimatedText>
-      <AnimatedText
-        fontSize={9}
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}
-        scale={springs.scale}
-        letterSpacing={-0.025}
-        color="black"
-        position={[0, -3, -10]}
-      >
-        {"unexpected"}
-      </AnimatedText>
-    </>
-  );
 }

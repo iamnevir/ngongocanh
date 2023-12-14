@@ -25,7 +25,7 @@ const SoundButton = () => {
               }
             }
           }}
-          className=" w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center cursor-pointer"
+          className=" w-10 h-10 bg-transparent rounded-full flex items-center justify-center cursor-pointer"
         >
           <Lottie color="white" loop={play} animationData={sound} />
         </div>

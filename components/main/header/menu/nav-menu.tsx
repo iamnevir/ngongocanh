@@ -8,7 +8,7 @@ import { useNav } from "@/hooks/use-nav";
 import { useCursor } from "@/hooks/use-cursor";
 import { perspective } from "@/lib/motion";
 import MenuItem from "./menu-item";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useEyes } from "@/hooks/use-eyes";
 
@@ -38,6 +38,7 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
   const nav = useNav();
   const cursor = useCursor();
   const maxRotate = 45;
+  const pathname = usePathname();
   const links = [
     {
       title: "Index",
@@ -79,7 +80,7 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
   return (
     <>
       <motion.div
-        variants={perspective}
+        variants={perspective({ delay: pathname === "/" ? 5 : 0.6 })}
         custom={1}
         initial="initial"
         animate="enter"
@@ -96,7 +97,7 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
         <Magnetic isActive={nav.isOpen}>
           <motion.div
             className={cn(
-              "  rounded-3xl shadow-md  flex items-end flex-col bg-rose-100"
+              "  rounded-3xl shadow-md   flex items-end flex-col bg-[#FFFFFF]"
             )}
             variants={menu}
             animate={nav.isOpen ? "open" : "closed"}

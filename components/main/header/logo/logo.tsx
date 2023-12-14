@@ -3,10 +3,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import useMousePosition from "@/hooks/use-mouse-position";
 import { useCursor } from "@/hooks/use-cursor";
+import { usePathname } from "next/navigation";
 
 const Logo = () => {
   const { x, y } = useMousePosition();
   const cursor = useCursor();
+  const pathname = usePathname();
   return (
     <motion.div
       onMouseEnter={() => cursor.setClassName("border-none")}
@@ -25,7 +27,7 @@ const Logo = () => {
           translateX: 0,
           transition: {
             duration: 0.65,
-            delay: 5.2,
+            delay: pathname === "/" ? 5.2 : 0.6,
             ease: [0.215, 0.61, 0.355, 1],
             opacity: { duration: 0.35 },
           },

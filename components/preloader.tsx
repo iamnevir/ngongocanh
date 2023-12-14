@@ -55,6 +55,24 @@ const Preloader = () => {
       {dimension.width > 0 && (
         <>
           <motion.div
+            variants={{
+              initial: {
+                opacity: 1,
+                scale: 1,
+              },
+              enter: {
+                opacity: 0,
+                scale: 0,
+                transition: { duration: 1, delay: 2 },
+              },
+            }}
+            initial="initial"
+            animate="enter"
+            className=" text-white absolute top-[48%] z-[99999] left-[47%]"
+          >
+            Nevir Studio®
+          </motion.div>
+          <motion.div
             className=" flex text-white text-5xl text-center absolute z-[99999]"
             variants={{
               initial: {

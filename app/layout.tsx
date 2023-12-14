@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Public_Sans, Mystery_Quest } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utlis";
 import localFont from "next/font/local";
+import OverlayProvider from "@/components/provider/overlay-provider";
 const font = localFont({ src: "./neu.woff2" });
 const sao = localFont({
   src: "./sao.woff2",
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(font.className, sao.variable, sao_italic.variable)}>
-        {children}
+        <OverlayProvider>{children}</OverlayProvider>
       </body>
     </html>
   );

@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import SoundButton from "./sound-button";
 import { useEffect, useState } from "react";
 import ReadMore from "./read-more";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utlis";
 const Footer = () => {
+  const pathname = usePathname();
   const [count, setCount] = useState(0);
   const [isIncreasing, setIsIncreasing] = useState(true);
 
@@ -35,10 +38,15 @@ const Footer = () => {
     return () => clearInterval(intervalId);
   }, [isIncreasing]);
   return (
-    <div className="flex items-center px-5  absolute bottom-0 w-full justify-between">
+    <div
+      className={cn(
+        "flex items-center px-5 absolute bottom-0 w-full justify-between",
+        pathname !== "/" && " bottom-3"
+      )}
+    >
       <div className=" flex items-center gap-2">
         <SoundButton />
-        <ReadMore />
+        {pathname === "/" && <ReadMore />}
       </div>
       <div
         onMouseEnter={handleMouseEnter}

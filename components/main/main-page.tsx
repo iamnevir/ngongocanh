@@ -8,11 +8,11 @@ import Preloader from "@/components/preloader";
 import { AnimatePresence } from "framer-motion";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import BirdCanvas from "@/components/main/body/bird";
+import { useTransition } from "@/hooks/use-transition-page";
+import TransitionPage from "../transition-page";
 
 export default function MainPage() {
-  const stickyElement = useRef<ElementRef<"div">>(null);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     (async () => {
       setTimeout(() => {
@@ -25,15 +25,11 @@ export default function MainPage() {
   return (
     <>
       <div className=" flex items-center bg-rose-100 w-[100dvw] h-[100vdh] overflow-clip">
-        <BirdCanvas />
+        {/* <FuzzyOverlay /> */}
         <AnimatePresence mode="wait">
           {isLoading && <Preloader />}
         </AnimatePresence>
-        <Navigation />
-        <Logo />
-        <NavMenu ref={stickyElement} />
-        <StickyCursor stickyElement={stickyElement} />
-        <Footer />
+        <BirdCanvas />
       </div>
     </>
   );

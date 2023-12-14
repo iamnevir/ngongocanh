@@ -1,3 +1,4 @@
+import { useCursor } from "@/hooks/use-cursor";
 import { useNav } from "@/hooks/use-nav";
 import { cn } from "@/lib/utlis";
 import { motion } from "framer-motion";
@@ -9,6 +10,7 @@ const NavMenuButton = forwardRef(function Index(
   ref: any
 ) {
   const nav = useNav();
+  const cursor = useCursor();
   return (
     <div
       ref={ref}
@@ -26,7 +28,10 @@ const NavMenuButton = forwardRef(function Index(
           className={cn(
             "w-full h-full group button relative  duration-700 transition-colors"
           )}
-          onClick={() => nav.toggle()}
+          onClick={() => {
+            nav.toggle();
+            cursor.setIsMenu();
+          }}
         >
           <PerspectiveText isActive={nav.isOpen} />
         </div>

@@ -19,7 +19,17 @@ const scaleAnimation = {
   },
 };
 
-export default function MenuModal({ modal, projects }: any) {
+export default function MenuModal({
+  modal,
+  projects,
+}: {
+  modal: { active: boolean; index: number };
+  projects: {
+    title: string;
+    src: string;
+    color: string;
+  }[];
+}) {
   const { active, index } = modal;
   const modalContainer = useRef(null);
   const cursor = useRef(null);
@@ -72,21 +82,26 @@ export default function MenuModal({ modal, projects }: any) {
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
-        className=" h-[200px] w-[250px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center"
+        className=" h-[300px] w-[350px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center z-10"
       >
         <div
           style={{ top: index * -100 + "%" }}
           className=" h-full w-full absolute modalSlider"
         >
-          {projects.map((project: any, index: number) => {
-            const { src, color } = project;
+          {projects.map((project, index) => {
             return (
               <div
                 className="flex w-full h-full justify-center items-center"
-                style={{ backgroundColor: color }}
+                style={{ backgroundColor: project.color }}
                 key={`modal_${index}`}
               >
-                <Image src={src} width={300} height={300} alt="image" />
+                <Image
+                  style={{ objectFit: "contain" }}
+                  src={project.src}
+                  width={400}
+                  height={400}
+                  alt="image"
+                />
               </div>
             );
           })}
@@ -94,14 +109,14 @@ export default function MenuModal({ modal, projects }: any) {
       </motion.div>
       <motion.div
         ref={cursor}
-        className=" w-20 h-20 rounded-full bg-black text-white absolute z-[2] flex items-center justify-center pointer-events-none"
+        className=" w-20 h-20 rounded-full bg-black text-white absolute z-[10] flex items-center justify-center pointer-events-none"
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
       />
       <motion.div
         ref={cursorLabel}
-        className=" w-20 h-20 rounded-full bg-transparent text-white absolute z-[2] flex items-center justify-center pointer-events-none"
+        className=" w-20 h-20 rounded-full bg-transparent text-white absolute z-[10] flex items-center justify-center pointer-events-none"
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}

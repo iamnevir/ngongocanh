@@ -118,7 +118,7 @@ export default function StickyCursor({
         height: cu.isHovered ? cu.height : 30,
       }}
       className={cn(
-        " fixed w-10 h-10  rounded-full border border-black pointer-events-none mix-blend-difference z-[99999]",
+        " fixed w-10 h-10  rounded-full border  border-black pointer-events-none z-[99999]",
         cu.className === ""
           ? cu.isHovered
             ? !nav.isOpen
@@ -127,7 +127,8 @@ export default function StickyCursor({
             : nav.isOpen
             ? "bg-white"
             : " bg-transparent"
-          : cu.className
+          : cu.className,
+        cu.isMenu ? " mix-blend-difference" : ""
       )}
       ref={cursor}
     />
