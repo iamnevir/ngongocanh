@@ -31,7 +31,7 @@ export default function ProjectStatus({
       </Text>
       <Html position={[3 * index * 2, -0.3, 3]} scale={0.1}>
         <div className=" scale-50">
-          <Explore text="View Project" link={link} />
+          <Explore delay={1} translateY={1.8} text="View Project" link={link} />
         </div>
       </Html>
     </>
