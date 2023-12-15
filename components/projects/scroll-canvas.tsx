@@ -1,11 +1,4 @@
 import {
-  ScrollScene,
-  SmoothScrollbar,
-  UseCanvas,
-  useImageAsTexture,
-  useScrollRig,
-} from "@14islands/r3f-scroll-rig";
-import {
   Html,
   MeshDistortMaterial,
   Scroll,
@@ -62,80 +55,6 @@ function ScrollProgress({ setWidth }: { setWidth: (v: number) => void }) {
   });
 
   return <></>;
-}
-
-function ImageCanvas1({
-  src,
-  loading = "eager",
-}: {
-  src: string;
-  loading?: "eager" | "lazy" | undefined;
-}) {
-  const texture = useTexture(src);
-  return (
-    <mesh position={[0, 0, 0]}>
-      <ImageIml url={src} scale={5} />
-      <MeshWobbleMaterial map={texture} factor={0.3} speed={1} />
-    </mesh>
-  );
-}
-
-function WebGLImage({ imgRef, ...props }: any) {
-  // Load texture from the <img/> and suspend until its ready
-  const texture = useImageAsTexture(imgRef);
-  return (
-    <mesh position={[0, 0, 5]}>
-      <planeGeometry args={[1, 1, 16, 16]} />
-
-      <MeshDistortMaterial
-        transparent
-        map={texture}
-        radius={0.99}
-        distort={0.2}
-        speed={3}
-      />
-    </mesh>
-  );
-}
-
-function ExampleComponent({
-  src,
-  loading = "eager",
-  z,
-}: {
-  src: string;
-  loading?: "eager" | "lazy" | undefined;
-  z?: number;
-}) {
-  const el = useRef<any>();
-  const img = useRef<any>();
-  const { hasSmoothScrollbar } = useScrollRig();
-  return (
-    <>
-      <div ref={el} className={cn(" w-[700px]  h-[60dvh]")}>
-        <Image
-          className=""
-          ref={img}
-          width={1440}
-          height={880}
-          loading={loading}
-          src={src}
-          alt="This will be loaded as a texture"
-        />
-      </div>
-      {hasSmoothScrollbar && (
-        <UseCanvas>
-          <ScrollScene track={el} debug={false}>
-            {(props) => (
-              <Suspense fallback={null}>
-                <WebGLImage imgRef={img} {...props} />
-              </Suspense>
-            )}
-          </ScrollScene>
-        </UseCanvas>
-      )}
-    </>
-  );
 }
 
 function ImageCanvas({
