@@ -7,7 +7,7 @@ import { easing } from "maath";
 import { randomRange } from "@/lib/utlis";
 import Status from "./status";
 import Explore from "./explore";
-
+import { EffectComposer, Noise } from "@react-three/postprocessing";
 function Bird({ speed, factor, url, ...props }: any) {
   const { nodes, materials, animations }: any = useLoader(GLTFLoader, url);
   const group = useRef<any>();

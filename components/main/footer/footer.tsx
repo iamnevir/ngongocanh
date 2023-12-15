@@ -40,8 +40,8 @@ const Footer = () => {
   return (
     <div
       className={cn(
-        "flex items-center px-5 absolute bottom-0 w-full justify-between",
-        pathname !== "/" && " bottom-3"
+        "flex items-center px-5 fixed top-[90dvh] w-full justify-between",
+        pathname !== "/" && "top-[93dvh]"
       )}
     >
       <div className=" flex items-center gap-2">

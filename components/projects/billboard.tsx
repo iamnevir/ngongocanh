@@ -3,7 +3,7 @@ import Explore from "../main/body/explore";
 
 const Billboard = () => {
   return (
-    <div className=" relative -translate-y-[125dvh] w-[100dvw]">
+    <div className=" relative w-[100dvw]">
       <Image
         src="/butterfly.svg"
         width={200}

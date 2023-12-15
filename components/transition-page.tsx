@@ -23,7 +23,7 @@ const TransitionPage = ({ color }: { color: string }) => {
     },
     exit: {
       d: targetPath,
-      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.1 },
+      transition: { duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
     },
   };
   return (
@@ -34,7 +34,7 @@ const TransitionPage = ({ color }: { color: string }) => {
         },
         exit: {
           top: "-100vh",
-          transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0 },
+          transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 },
         },
       }}
       initial="initial"

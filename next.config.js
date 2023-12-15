@@ -6,6 +6,9 @@ const nextConfig = {
         hostname: "utfs.io",
       },
       {
+        hostname: "design-embraced.nyc3.digitaloceanspaces.com",
+      },
+      {
         hostname: "files.edgestore.dev",
       },
     ],
@@ -13,3 +16,6 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+const { withNextVideo } = require("next-video/process");
+
+module.exports = withNextVideo(nextConfig);

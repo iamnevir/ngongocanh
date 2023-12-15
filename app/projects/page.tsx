@@ -14,33 +14,11 @@ const ProjectPage = () => {
       }, 1);
     })();
   }, []);
-  const projects = [
-    {
-      name: "Magic Keyboard",
-      images: [],
-      color: {
-        "--gradient-color-1": "#ffc2fd",
-        "--gradient-color-2": "#f4c3e9",
-        "--gradient-color-3": "#d6aadf",
-        "--gradient-color-4": "#f7cfec",
-      },
-    },
-    {
-      name: "Magic Keyboard",
-      images: [],
 
-      color: {
-        "--gradient-color-1": "#c3e4ff",
-        "--gradient-color-2": "#6ec3f4",
-        "--gradient-color-3": "#eae2ff",
-        "--gradient-color-4": "#b9beff",
-      },
-    },
-  ];
   return (
-    <div className="w-[100dvw] h-[100vdh] overflow-auto">
+    <div className="w-[100dvw] h-[100vdh] overflow-hidden bg-rose-100">
       <AnimatePresence mode="wait">
-        {isLoading && <TransitionPage color="#FFE4E6" />}
+        {isLoading && <TransitionPage color="#F7A6BB" />}
       </AnimatePresence>
       <Projects />
     </div>

@@ -25,9 +25,8 @@ export default function MenuModal({
 }: {
   modal: { active: boolean; index: number };
   projects: {
-    title: string;
-    src: string;
-    color: string;
+    name: string;
+    images: string[];
   }[];
 }) {
   const { active, index } = modal;
@@ -74,7 +73,6 @@ export default function MenuModal({
       yMoveCursorLabel(pageY);
     });
   }, []);
-
   return (
     <>
       <motion.div
@@ -82,41 +80,37 @@ export default function MenuModal({
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
-        className=" h-[300px] w-[350px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center z-10"
+        className=" h-[245px] w-[400px] rounded-[10px] absolute bg-black overflow-hidden pointer-events-none flex items-center justify-center z-10"
       >
         <div
           style={{ top: index * -100 + "%" }}
-          className=" h-full w-full absolute modalSlider"
+          className=" h-full w-full absolute modalSlider "
         >
-          {projects.map((project, index) => {
-            return (
-              <div
-                className="flex w-full h-full justify-center items-center"
-                style={{ backgroundColor: project.color }}
-                key={`modal_${index}`}
-              >
-                <Image
-                  style={{ objectFit: "contain" }}
-                  src={project.src}
-                  width={400}
-                  height={400}
-                  alt="image"
-                />
-              </div>
-            );
-          })}
+          {projects.map((project, index) => (
+            <div
+              className="flex w-[400px] h-[245px] relative justify-center items-center"
+              key={`modal_${index}`}
+            >
+              <Image
+                style={{ objectFit: "contain" }}
+                src={project.images[0]}
+                fill
+                alt="vc"
+              />
+            </div>
+          ))}
         </div>
       </motion.div>
       <motion.div
         ref={cursor}
-        className=" w-20 h-20 rounded-full bg-black text-white absolute z-[10] flex items-center justify-center pointer-events-none"
+        className=" w-20 h-20 rounded-full bg-rose-100 text-black absolute z-[10] flex items-center justify-center pointer-events-none"
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
       />
       <motion.div
         ref={cursorLabel}
-        className=" w-20 h-20 rounded-full bg-transparent text-white absolute z-[10] flex items-center justify-center pointer-events-none"
+        className=" w-20 h-20 rounded-full bg-transparent text-black absolute z-[10] flex items-center justify-center pointer-events-none"
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}

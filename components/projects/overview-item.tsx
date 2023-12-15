@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useRef } from "react";
 import gsap from "gsap";
 
-export default function OverviewItem({ data }: any) {
-  const { title, description, src } = data;
+export default function OverviewItem({ data, index }: any) {
+  const { name, images } = data;
   const outer = useRef<any>(null);
   const inner = useRef<any>(null);
 
@@ -39,16 +39,14 @@ export default function OverviewItem({ data }: any) {
       onMouseLeave={(e) => {
         manageMouseLeave(e);
       }}
-      className="w-full text-[5vw]  text-black group flex items-center justify-between cursor-pointer origin-top"
+      className="w-full text-[6dvw] font-medium font-sao text-black group flex items-center justify-between cursor-pointer origin-top"
       style={{ perspective: "80vw" }}
     >
-      <div className=" px-40 border-b  border-black w-full justify-between flex items-center">
-        <span className="group-hover:text-slate-500 translate-x-0 group-hover:-translate-x-5 duration-500">
-          {title}
-        </span>
-        <span className=" text-[2vw] group-hover:text-slate-500 translate-x-0 group-hover:translate-x-5 duration-500">
-          {" "}
-          {description}
+      <div className=" w-full border-b border-black justify-center flex items-center">
+        <span className=" group-hover:scale-50 duration-500">
+          <span className=" font-italic text-[2dvw]">{`0${index + 1}.`}</span>
+
+          {name}
         </span>
       </div>
 
@@ -59,7 +57,7 @@ export default function OverviewItem({ data }: any) {
       >
         <div
           ref={inner}
-          className=" bg-transparent group-hover:bg-gradient-to-r  from-sky-300 to-indigo-300 absolute whitespace-nowrap h-full flex"
+          className=" bg-transparent group-hover:bg-gradient-to-r  from-rose-300 to-purple-300 absolute whitespace-nowrap h-full flex"
           style={{ willChange: "top" }}
         >
           {[...Array(2)].map((_, index) => {
@@ -70,22 +68,22 @@ export default function OverviewItem({ data }: any) {
               >
                 <div className="h-[6vw] w-[16vw] relative overflow-hidden rounded-[3vw] mx-[1vw] flex">
                   <Image
-                    src={src}
+                    src={images[0]}
                     fill
-                    alt="image"
+                    alt=""
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-                <p className=" text-black">{description}</p>
+                <p className=" text-black">{name}</p>
                 <div className="h-[6vw] w-[16vw] relative overflow-hidden rounded-[3vw] mx-[1vw] flex">
                   <Image
-                    src={src}
+                    src={images[1]}
                     fill
-                    alt="image"
+                    alt=""
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-                <p className=" text-black">{description}</p>
+                <p className=" text-black">{name}</p>
               </div>
             );
           })}
