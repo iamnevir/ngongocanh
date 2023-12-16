@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utlis";
 import localFont from "next/font/local";
-import OverlayProvider from "@/components/provider/overlay-provider";
+import dynamic from "next/dynamic";
+const OverlayProvider = dynamic(
+  () => import("@/components/provider/overlay-provider"),
+  { ssr: false }
+);
 const font = localFont({ src: "./neu.woff2" });
 const sao = localFont({
   src: "./sao.woff2",
