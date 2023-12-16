@@ -15,6 +15,10 @@ export default function StickyCursor({
 }: {
   stickyElement: any;
 }) {
+  const mobile = window.screen.width <= 768;
+  if (mobile) {
+    return null;
+  }
   const cu = useCursor();
   const nav = useNav();
   const cursor = useRef<any>(null);
