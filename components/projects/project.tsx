@@ -2,7 +2,8 @@
 import TransitionPage from "@/components/transition-page";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import Overview from "./overview";
+import { Gradient } from "whatamesh";
+import ScrollCanvas from "@/components/projects/scroll-canvas";
 
 const projects = [
   {
@@ -51,7 +52,8 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+const Project = () => {
+  const gradient = new Gradient();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -61,15 +63,39 @@ export default function Projects() {
         window.scrollTo(0, 0);
       }, 1);
     })();
+
+    // gradient.initGradient("#gradient-canvas");
   }, []);
+
+  const color = {
+    "--gradient-color-1": "#c3e4ff",
+    "--gradient-color-2": "#6ec3f4",
+    "--gradient-color-3": "#eae2ff",
+    "--gradient-color-4": "#b9beff",
+  };
+  const [width, setWidth] = useState(0);
   return (
-    <>
-      <div className="w-[100dvw] h-[100dvh] justify-center flex overflow-hidden bg-rose-100">
-        <AnimatePresence mode="wait">
-          {isLoading && <TransitionPage color="#F7A6BB" />}
-        </AnimatePresence>
-        <Overview />
+    <div className=" justify-center overflow-hidden flex h-full sm:h-max">
+      <AnimatePresence mode="wait">
+        {isLoading && <TransitionPage color="#F7A6BB" />}
+      </AnimatePresence>
+      {/* <canvas
+            //@ts-ignore
+            style={color}
+            className=" h-[100dvh] w-full"
+            id="gradient-canvas"
+            data-transition-in
+          /> */}
+      <ScrollCanvas setWidth={setWidth} />
+
+      <div className="absolute bottom-6 w-[150px] overflow-hidden rounded-full z-50 bg-black/10 h-[5px]">
+        <div
+          style={{ width: `${width * 100}%` }}
+          className=" rounded-full z-50 bg-black h-[5px]"
+        ></div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default Project;
