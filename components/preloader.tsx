@@ -37,7 +37,7 @@ const Preloader = () => {
       transition: { duration, delay },
     },
   });
-  const mobile = window.screen.width < 768;
+  const mobile = window.screen.width <= 768;
   return (
     <motion.div
       variants={{

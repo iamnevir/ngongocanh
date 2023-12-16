@@ -17,7 +17,7 @@ import { cn } from "@/lib/utlis";
 import { Color } from "three";
 
 const ScrollCanvas = ({ setWidth }: { setWidth: (v: number) => void }) => {
-  const mobile = window.screen.width < 768;
+  const mobile = window.screen.width <= 768;
   return (
     <Canvas>
       <color attach="background" args={["#FFE4E6"]} />

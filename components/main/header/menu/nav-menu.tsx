@@ -17,7 +17,7 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
   const cursor = useCursor();
   const maxRotate = 45;
   const pathname = usePathname();
-  const mobile = window.screen.width < 768;
+  const mobile = window.screen.width <= 768;
   const links = [
     {
       title: "Index",
