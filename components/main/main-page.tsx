@@ -13,6 +13,7 @@ import TransitionPage from "../transition-page";
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     (async () => {
       setTimeout(() => {
@@ -24,7 +25,7 @@ export default function MainPage() {
 
   return (
     <>
-      <div className=" flex items-center bg-rose-100 w-[100dvw] h-[100vdh] overflow-clip">
+      <div className=" flex items-center bg-rose-100 w-[100dvw] sm:h-[100vdh] h-full overflow-clip">
         {/* <FuzzyOverlay /> */}
         <AnimatePresence mode="wait">
           {isLoading && <Preloader />}

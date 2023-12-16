@@ -9,6 +9,7 @@ const Overview = () => {
   const [modal, setModal] = useState({ active: false, index: 0 });
   const cursor = useCursor();
   const router = useRouter();
+  const mobile = window.innerWidth < 768;
   const projects = [
     {
       name: "C. Tagliavini",
@@ -58,7 +59,7 @@ const Overview = () => {
 
   return (
     <div className=" w-[100dvw] h-full py-20 overflow-hidden ">
-      <MenuModal modal={modal} projects={projects} />
+      {!mobile && <MenuModal modal={modal} projects={projects} />}
 
       <motion.div
         className=" flex relative h-full w-full flex-col"

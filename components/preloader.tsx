@@ -37,6 +37,7 @@ const Preloader = () => {
       transition: { duration, delay },
     },
   });
+  const mobile = window.innerWidth < 768;
   return (
     <motion.div
       variants={{
@@ -55,25 +56,7 @@ const Preloader = () => {
       {dimension.width > 0 && (
         <>
           <motion.div
-            variants={{
-              initial: {
-                opacity: 1,
-                scale: 1,
-              },
-              enter: {
-                opacity: 0,
-                scale: 0,
-                transition: { duration: 1, delay: 2 },
-              },
-            }}
-            initial="initial"
-            animate="enter"
-            className=" text-white absolute top-[48%] z-[99999] left-[47%]"
-          >
-            Nevir Studio®
-          </motion.div>
-          <motion.div
-            className=" flex text-white text-5xl text-center absolute z-[99999]"
+            className=" flex text-white  text-center absolute z-[99999]"
             variants={{
               initial: {
                 scale: 1,
@@ -110,17 +93,20 @@ const Preloader = () => {
                     rotate: 0,
                   },
                   enter: {
-                    rotate: -70,
-                    translateX: 47,
+                    rotate: mobile ? -60 : -70,
+                    translateX: mobile ? 17 : 47,
                     transition: { duration: 0.8, delay: 2.5 },
                   },
                 }}
-                className=" h-10 w-[200px] border border-white border-r-0 flex"
+                className=" sm:h-10 h-5 sm:w-[200px] w-[100px] relative border border-white border-r-0 flex"
               >
                 <motion.div
                   variants={load(1.2, 0.2)}
                   className=" block h-full bg-white"
                 />
+                <span className="  absolute right-[1px] flex items-center justify-center">
+                  Nevir
+                </span>
               </motion.div>
               <motion.div
                 variants={{
@@ -128,17 +114,20 @@ const Preloader = () => {
                     rotate: 0,
                   },
                   enter: {
-                    rotate: 70,
-                    translateX: -47,
+                    rotate: mobile ? 60 : 70,
+                    translateX: mobile ? -17 : -47,
                     transition: { duration: 0.8, delay: 2.5 },
                   },
                 }}
-                className=" flex h-10 w-[200px] border border-white border-l-0"
+                className=" flex sm:h-10 h-5 relative sm:w-[200px] w-[100px] border border-white border-l-0"
               >
                 <motion.div
                   variants={load(1, 1.3)}
                   className=" block h-full bg-white"
                 />
+                <span className=" absolute left-[1px] flex items-center justify-center">
+                  Studio®
+                </span>
               </motion.div>
             </motion.div>
           </motion.div>

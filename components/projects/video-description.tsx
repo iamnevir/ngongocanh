@@ -1,11 +1,12 @@
 import Video from "next-video";
 const VideoDescription = ({ src }: { src: string }) => {
+  const mobile = window.innerWidth < 768;
   return (
     <Video
       autoPlay
       controls={false}
-      width={700}
-      height={400}
+      width={mobile ? 320 : 700}
+      height={mobile ? 195 : 400}
       muted
       loop
       src={src}

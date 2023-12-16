@@ -19,7 +19,6 @@ export default function StickyCursor({
   const nav = useNav();
   const cursor = useRef<any>(null);
   const cursorSize = cu.isHovered ? 50 : 30;
-
   const mouse = {
     x: useMotionValue(0),
     y: useMotionValue(0),

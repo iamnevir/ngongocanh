@@ -25,11 +25,11 @@ function MenuItem({
         eyes.onClose();
       }}
       className={cn(
-        "text3d group duration-500 relative cursor-pointer text-8xl font-sao",
+        "text3d group duration-500 relative cursor-pointer sm:text-8xl text-6xl font-sao",
         nav.isOpen ? "" : "translate-x-[500px]"
       )}
     >
-      <div className=" font-medium text-8xl duration-300  group-hover:-translate-y-[100%]">
+      <div className=" font-medium sm:text-8xl text-6xl duration-300  group-hover:-translate-y-[100%]">
         {primary}
       </div>
 

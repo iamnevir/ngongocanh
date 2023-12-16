@@ -16,7 +16,7 @@ const ProjectPage = () => {
   }, []);
 
   return (
-    <div className="w-[100dvw] h-[100vdh] overflow-hidden bg-rose-100">
+    <div className="w-[100dvw] h-[100dvh] justify-center flex overflow-hidden bg-rose-100">
       <AnimatePresence mode="wait">
         {isLoading && <TransitionPage color="#F7A6BB" />}
       </AnimatePresence>

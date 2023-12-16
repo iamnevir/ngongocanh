@@ -12,33 +12,12 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useEyes } from "@/hooks/use-eyes";
 
-const menu = {
-  open: {
-    width: "480px",
-    height: "650px",
-    top: "0px",
-    right: "0px",
-    transition: { duration: 0.7, type: "tween", ease: [0.76, 0, 0.24, 1] },
-  },
-  closed: {
-    width: "40px",
-    height: "40px",
-    top: "0px",
-    right: "0px",
-    transition: {
-      duration: 0.7,
-      delay: 0.35,
-      type: "tween",
-      ease: [0.76, 0, 0.24, 1],
-    },
-  },
-};
-
 const NavMenu = forwardRef(function Index(props: any, ref: any) {
   const nav = useNav();
   const cursor = useCursor();
   const maxRotate = 45;
   const pathname = usePathname();
+  const mobile = window.innerWidth < 768;
   const links = [
     {
       title: "Index",
@@ -77,6 +56,27 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
       url: "https://www.linkedin.com/in/anh-ng%C3%B4-ng%E1%BB%8Dc-7a858026a/",
     },
   ];
+  const menu = {
+    open: {
+      width: mobile ? "300px" : "480px",
+      height: mobile ? "450px" : "650px",
+      top: "0px",
+      right: "0px",
+      transition: { duration: 0.7, type: "tween", ease: [0.76, 0, 0.24, 1] },
+    },
+    closed: {
+      width: "40px",
+      height: "40px",
+      top: "0px",
+      right: "0px",
+      transition: {
+        duration: 0.7,
+        delay: 0.35,
+        type: "tween",
+        ease: [0.76, 0, 0.24, 1],
+      },
+    },
+  };
   return (
     <>
       <motion.div
@@ -85,19 +85,23 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
         initial="initial"
         animate="enter"
         exit="exit"
-        className={cn(" fixed right-8 top-5 ")}
+        className={cn(" fixed right-8 top-5 sm:max-w-none max-w-xs")}
         onMouseMove={(e) => {
-          manageMouseMove(e);
+          if (!mobile) {
+            manageMouseMove(e);
+          }
         }}
         onMouseEnter={() => {
-          cursor.setWidth(50);
-          cursor.setHeight(50);
+          if (!mobile) {
+            cursor.setWidth(50);
+            cursor.setHeight(50);
+          }
         }}
       >
         <Magnetic isActive={nav.isOpen}>
           <motion.div
             className={cn(
-              "  rounded-3xl shadow-md   flex items-end flex-col bg-[#FFFFFF]"
+              "  rounded-3xl shadow-md  flex items-end flex-col bg-[#FFFFFF]"
             )}
             variants={menu}
             animate={nav.isOpen ? "open" : "closed"}
@@ -105,7 +109,7 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
           >
             <div
               className={cn(
-                " w-[130px] h-full -left-10 top-0 absolute duration-500",
+                " w-[130px] sm:block hidden h-full -left-10 top-0 absolute duration-500",
                 nav.isOpen ? "" : "translate-x-40",
                 eyes.className
               )}
@@ -118,13 +122,13 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
                 height={100}
               />
             </div>
-            <div className={cn(" relative  p-10 pointer-events-none ")}>
+            <div className={cn(" relative sm:p-10 p-5 pointer-events-none ")}>
               <NavMenuButton ref={ref} />
             </div>
             <motion.div
               ref={plane}
               className={cn(
-                "  px-20 pt-0 gap-5 transition-all  flex flex-col justify-start items-start",
+                "  sm:px-20 px-10 pt-0 gap-5 transition-all  flex flex-col justify-start items-start",
                 nav.isOpen ? "" : "hidden"
               )}
             >
@@ -136,7 +140,7 @@ const NavMenu = forwardRef(function Index(props: any, ref: any) {
             </motion.div>
             <div
               className={cn(
-                " flex items-end justify-between duration-300 p-16 w-full",
+                " flex items-end justify-between duration-300 sm:p-16 p-10 w-full",
                 nav.isOpen ? "" : " translate-x-[500px]"
               )}
             >

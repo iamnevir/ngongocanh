@@ -75,7 +75,7 @@ const ProjectPage = () => {
   };
   const [width, setWidth] = useState(0);
   return (
-    <div className=" justify-center flex">
+    <div className=" justify-center overflow-hidden flex h-full sm:h-max">
       <AnimatePresence mode="wait">
         {isLoading && <TransitionPage color="#F7A6BB" />}
       </AnimatePresence>
@@ -88,7 +88,7 @@ const ProjectPage = () => {
           /> */}
       <ScrollCanvas setWidth={setWidth} />
 
-      <div className="absolute bottom-6 w-[150px] rounded-full z-50 bg-black/10 h-[5px]">
+      <div className="absolute bottom-6 w-[150px] overflow-hidden rounded-full z-50 bg-black/10 h-[5px]">
         <div
           style={{ width: `${width * 100}%` }}
           className=" rounded-full z-50 bg-black h-[5px]"
