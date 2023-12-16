@@ -16,9 +16,7 @@ export default function StickyCursor({
   stickyElement: any;
 }) {
   const mobile = window.screen.width <= 768;
-  if (mobile) {
-    return null;
-  }
+
   const cu = useCursor();
   const nav = useNav();
   const cursor = useRef<any>(null);
@@ -106,7 +104,9 @@ export default function StickyCursor({
   const template = ({ rotate, scaleX, scaleY }: any) => {
     return `rotate(${rotate}) scaleX(${scaleX}) scaleY(${scaleY})`;
   };
-
+  if (mobile) {
+    return null;
+  }
   return (
     <motion.div
       transformTemplate={template}
