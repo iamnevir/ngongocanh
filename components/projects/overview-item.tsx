@@ -6,7 +6,7 @@ export default function OverviewItem({ data, index }: any) {
   const { name, images } = data;
   const outer = useRef<any>(null);
   const inner = useRef<any>(null);
-  const mobile = window.innerWidth < 768;
+  const mobile = window.screen.width < 768;
   const manageMouseEnter = (e: any) => {
     const bounds = e.target.getBoundingClientRect();
     if (e.clientY < bounds.top + bounds.height / 2) {

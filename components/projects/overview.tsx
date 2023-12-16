@@ -9,7 +9,7 @@ const Overview = () => {
   const [modal, setModal] = useState({ active: false, index: 0 });
   const cursor = useCursor();
   const router = useRouter();
-  const mobile = window.innerWidth < 768;
+  const mobile = window.screen.width < 768;
   const projects = [
     {
       name: "C. Tagliavini",

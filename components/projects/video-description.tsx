@@ -1,6 +1,6 @@
 import Video from "next-video";
 const VideoDescription = ({ src }: { src: string }) => {
-  const mobile = window.innerWidth < 768;
+  const mobile = window.screen.width < 768;
   return (
     <Video
       autoPlay

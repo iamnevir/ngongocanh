@@ -8,7 +8,7 @@ import Navigation from "../main/header/navigation/navigation";
 
 const OverlayProvider = ({ children }: { children: React.ReactNode }) => {
   const stickyElement = useRef<ElementRef<"div">>(null);
-  const mobile = window.innerWidth < 768;
+  const mobile = window.screen.width < 768;
   return (
     <div className=" w-full h-full relative">
       {children}

@@ -1,6 +1,6 @@
 import { Text } from "@react-three/drei";
 export default function Status(props: any) {
-  const mobile = window.innerWidth < 768;
+  const mobile = window.screen.width < 768;
   return (
     <>
       <Text
